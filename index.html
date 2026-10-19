@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#a51f2b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Doomsday">
+<meta name="description" content="Your Marvel countdown watchlist for Avengers: Doomsday.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<title>Marvel Doomsday Countdown</title>
+<style>
+:root{color-scheme:dark;--bg:#08090d;--panel:#12141b;--panel2:#191c25;--line:#292d38;--text:#f5f5f7;--muted:#a7acb8;--red:#d52e40;--red2:#8e1725;--green:#72d6a0}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:radial-gradient(ellipse at top,#241017 0%,var(--bg) 48%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 16px env(safe-area-inset-bottom)}
+main{max-width:720px;margin:0 auto;padding:24px 0 40px}.hero{padding:22px 4px 18px}.eyebrow{text-transform:uppercase;letter-spacing:.19em;font-size:11px;color:#f08b96;font-weight:800}.hero h1{font-size:clamp(30px,8vw,48px);line-height:1.02;margin:10px 0 8px;letter-spacing:-.04em}.hero p{color:var(--muted);margin:0;line-height:1.5}.countdown{margin-top:20px;background:linear-gradient(135deg,#b91f32,#64121e);border:1px solid #e64a59;border-radius:20px;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.countdown strong{font-size:15px}.countdown span{font-size:12px;color:#ffe0e3;display:block;margin-top:4px}.mark{width:48px;height:48px;border-radius:15px;background:#fff1f2;color:#a51f2b;display:grid;place-items:center;font-weight:950;font-size:24px;flex-shrink:0}.stats{display:flex;justify-content:space-between;gap:12px;margin:20px 2px 8px;font-size:13px;color:var(--muted)}.stats b{color:var(--text)}.bar{height:7px;background:#292c36;border-radius:20px;overflow:hidden}.bar div{height:100%;width:0;background:linear-gradient(90deg,#e34a5a,#ff9b9b);transition:width .2s}.controls{display:flex;gap:9px;margin:20px 0 12px}.search{min-width:0;flex:1;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:13px 14px;border-radius:13px;font-size:15px;outline:none}.search:focus{border-color:#d52e40}.filter{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:13px;padding:0 12px;font-size:13px}.section{margin:24px 0 10px;display:flex;align-items:center;justify-content:space-between}.section h2{font-size:16px;margin:0}.section small{color:var(--muted)}.list{display:grid;gap:9px}.item{display:flex;align-items:center;gap:13px;padding:14px;background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:15px;min-height:70px;transition:opacity .15s,border-color .15s}.item.done{border-color:#275640;background:linear-gradient(135deg,#14251e,#11151a)}.item input{appearance:none;width:24px;height:24px;border:2px solid #646b79;border-radius:8px;flex-shrink:0;display:grid;place-items:center;margin:0}.item input:checked{background:var(--green);border-color:var(--green)}.item input:checked:after{content:"✓";color:#082116;font-size:16px;font-weight:900}.title{font-size:14px;font-weight:750;line-height:1.35}.subtitle{font-size:11px;color:var(--muted);margin-top:5px}.item.done .title{color:#a7b9b0;text-decoration:line-through;text-decoration-color:#638675}.tag{font-size:9px;letter-spacing:.08em;color:#ff9ba5;font-weight:800;margin-left:auto;white-space:nowrap}.item.done .tag{color:#83d7a6}.actions{display:flex;gap:8px;margin-top:18px}.btn{flex:1;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:12px;font-size:13px;font-weight:700}.btn:active{transform:scale(.99)}.note{color:#858b98;font-size:11px;line-height:1.5;text-align:center;margin:22px 8px 0}.empty{color:var(--muted);padding:24px;text-align:center;background:var(--panel);border-radius:14px}
+@media(min-width:600px){body{padding-left:24px;padding-right:24px}.item{padding:16px}.title{font-size:15px}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <div class="eyebrow">The road to the next Avengers event</div>
+    <h1>MARVEL<br>DOOMSDAY COUNTDOWN</h1>
+    <p>Your watchlist. Your order. Check off each title as you watch.</p>
+    <div class="countdown"><div><strong>AVENGERS: DOOMSDAY</strong><span>Watch the countdown list and track your progress.</span></div><div class="mark">D</div></div>
+  </header>
+  <div class="stats"><span><b id="watched">0</b> of <b id="total">0</b> completed</span><b id="percent">0%</b></div>
+  <div class="bar" aria-label="Watch progress"><div id="progress"></div></div>
+  <div class="controls">
+    <input class="search" id="search" type="search" placeholder="Search your watchlist…" aria-label="Search watchlist">
+    <select class="filter" id="filter" aria-label="Filter titles"><option value="all">All titles</option><option value="unwatched">Unwatched</option><option value="watched">Watched</option></select>
+  </div>
+  <div class="section"><h2>Your checklist</h2><small id="shown"></small></div>
+  <section class="list" id="list" aria-live="polite"></section>
+  <div class="actions"><button class="btn" id="copy">Copy checklist</button><button class="btn" id="reset">Reset progress</button></div>
+  <p class="note">Progress saves automatically on this device. For reliable offline launch, install this site from Safari after hosting it over HTTPS. This is a fan-made checklist and is not affiliated with Marvel.</p>
+</main>
+<script>
+const entries = [
+ {id:"m1",title:"X-Men (2000) (DOOMSDAY)",official:true},
+ {id:"m2",title:"X2: X-Men United (2003) (DOOMSDAY)",official:true},
+ {id:"m3",title:"Captain America: The First Avenger (2011) (DOOMSDAY)",official:true},
+ {id:"m4",title:"The Avengers (2012) (DOOMSDAY)",official:true},
+ {id:"m5",title:"Avengers: Infinity War (2018) (DOOMSDAY)",official:true},
+ {id:"m6",title:"Avengers: Endgame (2019) (DOOMSDAY)",official:true},
+ {id:"m7",title:"Loki — Seasons 1 & 2 (DOOMSDAY)",official:true,subtitle:"Seasons combined into one checklist item"},
+ {id:"m8",title:"Shang-Chi and the Legend of the Ten Rings (2021) (DOOMSDAY)",official:true},
+ {id:"m9",title:"Spider-Man: No Way Home (2021) (DOOMSDAY)",official:true},
+ {id:"m10",title:"Black Panther: Wakanda Forever (2022) (DOOMSDAY)",official:true},
+ {id:"m11",title:"Doctor Strange in the Multiverse of Madness (2022) (DOOMSDAY)",official:true},
+ {id:"m12",title:"Deadpool & Wolverine (2024) (DOOMSDAY)",official:true},
+ {id:"m13",title:"Thunderbolts* (2025) (DOOMSDAY)",official:true},
+ {id:"m14",title:"Captain America: Brave New World (2025) (DOOMSDAY)",official:true},
+ {id:"m15",title:"The Fantastic Four: First Steps (2025) (DOOMSDAY)",official:true},
+ {id:"x1",title:"X-Men (2000)",official:false,subtitle:"Extra X-Men rewatch — appended as requested"},
+ {id:"x2",title:"X2: X-Men United (2003)",official:false,subtitle:"Extra X-Men rewatch — appended as requested"},
+ {id:"x3",title:"X-Men: The Last Stand (2006)",official:false},
+ {id:"x4",title:"X-Men: Days of Future Past (2014)",official:false}
+];
+const KEY="marvel-doomsday-progress-v1";
+let checked={};
+try{checked=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){checked={}}
+const list=document.getElementById("list"), search=document.getElementById("search"), filter=document.getElementById("filter");
+function save(){try{localStorage.setItem(KEY,JSON.stringify(checked))}catch(e){}}
+function updateStats(){
+ const total=entries.length, done=entries.filter(x=>checked[x.id]).length, pct=total?Math.round(done/total*100):0;
+ document.getElementById("watched").textContent=done;document.getElementById("total").textContent=total;
+ document.getElementById("percent").textContent=pct+"%";document.getElementById("progress").style.width=pct+"%";
+}
+function render(){
+ const q=search.value.trim().toLowerCase(), mode=filter.value;
+ const visible=entries.filter(x=>(x.title+" "+(x.subtitle||"")).toLowerCase().includes(q)&&(mode==="all"||(mode==="watched"?!!checked[x.id]:!checked[x.id])));
+ list.innerHTML="";
+ if(!visible.length){list.innerHTML='<div class="empty">No titles match this view.</div>'}
+ visible.forEach((entry)=>{
+  const label=document.createElement("label");label.className="item"+(checked[entry.id]?" done":"");
+  const input=document.createElement("input");input.type="checkbox";input.checked=!!checked[entry.id];input.setAttribute("aria-label","Mark "+entry.title+" as watched");
+  input.addEventListener("change",()=>{checked[entry.id]=input.checked;save();render();updateStats()});
+  const content=document.createElement("div");content.style.flex="1";
+  const title=document.createElement("div");title.className="title";title.textContent=entry.title;
+  content.appendChild(title);
+  if(entry.subtitle){const sub=document.createElement("div");sub.className="subtitle";sub.textContent=entry.subtitle;content.appendChild(sub)}
+  const tag=document.createElement("span");tag.className="tag";tag.textContent=checked[entry.id]?"WATCHED":(entry.official?"DOOMSDAY":"X-MEN");
+  label.append(input,content,tag);list.appendChild(label);
+ });
+ document.getElementById("shown").textContent=visible.length+" shown";
+}
+search.addEventListener("input",render);filter.addEventListener("change",render);
+document.getElementById("reset").addEventListener("click",()=>{if(confirm("Reset all watched checkmarks? This cannot be undone.")){checked={};save();render();updateStats()}});
+document.getElementById("copy").addEventListener("click",async()=>{
+ const text=entries.map(x=>(checked[x.id]?"[x] ":"[ ] ")+x.title).join("\n");
+ try{await navigator.clipboard.writeText(text);document.getElementById("copy").textContent="Copied!";setTimeout(()=>document.getElementById("copy").textContent="Copy checklist",1600)}
+ catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();document.getElementById("copy").textContent="Copied!"}
+});
+if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}))}
+render();updateStats();
+</script>
+</body>
+</html>
